@@ -1,3 +1,13 @@
+window.onload = function(){
+    const fragment = new URLSearchParams(window.location.hash.slice(1));
+    const [channel/*, followers, logo, banner, url, id*/] = [fragment.get('c')/*, fragment.get('followers'), fragment.get('logo'), fragment.get('banner'), fragment.get('url'), fragment.get('legacy_id')*/];
+    if(!channel){
+        refreshData();
+    } else{
+        document.getElementById("infos").innerHTML = channel;
+    }
+}
+
 const refreshData = () => {
 store.collection('c').get().then(snapshot => {
     setupGuilds(snapshot.docs);
