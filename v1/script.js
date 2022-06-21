@@ -1,12 +1,24 @@
 window.onload = function(){
     const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [channel, followers/*, logo, banner, url, id*/] = [fragment.get('c'), fragment.get('followers')/*, fragment.get('logo'), fragment.get('banner'), fragment.get('url'), fragment.get('legacy_id')*/];
+    const [channel, followers, logo, banner, id] = [fragment.get('c'), fragment.get('followers'), fragment.get('logo'), fragment.get('banner'), fragment.get('legacy_id')];
     if(channel != null){
         document.getElementById("infos").innerHTML = channel;
     }
 
     if(followers != null){
         document.getElementById("infos").innerHTML = followers;
+    }
+
+    if(logo != null){
+        document.getElementById("infos").innerHTML = logo;
+    }
+
+    if(banner != null){
+        document.getElementById("infos").innerHTML = banner;
+    }
+
+    if(id != null){
+        document.getElementById("infos").innerHTML = id;
     }
 }
 
@@ -28,9 +40,12 @@ const setupGuilds = (data) => {
         `
           <hr>
           <div><p style="color: grey">Username: <p style="color: black">${c.username}</p></p></div>
-          <div><p style="color: gray">Followers: <b style="color: black">${c.followers}</b></p></div>
-          <div><p style="color: gray">URL: <p style="color:black">https://ckstudios2018.github.io/OpenSource-uTube/c/${c.channel}</p></p></div>
-          <div><p style="color:gray">Videos: <p style="color:black">${c.videos}</p></p></div>
+          <div><p style="color: gray">Followers: <p style="color: black">${c.followers}</p></p></div>
+          <div><p style="color: gray">URL: <p style="color: black">https://ckstudios2018.github.io/OpenSource-uTube/c/${c.channel}</p></p></div>
+          <div><p style="color: gray">Videos: <p style="color: black">${c.videos}</p></p></div>
+          <div><p style="color: gray">Logo: <p style="color: black">${c.img}</p></p></div>
+          <div><p style="color: gray">Banner: ${c.banner}</p></div>
+          <div><p style="color: gray">Legacy ID: ${c.id}</p></div>
         `;
         html += li;
       });
