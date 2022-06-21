@@ -1,10 +1,12 @@
 window.onload = function(){
     const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [channel/*, followers, logo, banner, url, id*/] = [fragment.get('c')/*, fragment.get('followers'), fragment.get('logo'), fragment.get('banner'), fragment.get('url'), fragment.get('legacy_id')*/];
-    if(!channel){
-        refreshData();
-    } else{
+    const [channel, followers/*, logo, banner, url, id*/] = [fragment.get('c'), fragment.get('followers')/*, fragment.get('logo'), fragment.get('banner'), fragment.get('url'), fragment.get('legacy_id')*/];
+    if(channel != null){
         document.getElementById("infos").innerHTML = channel;
+    }
+
+    if(followers != null){
+        document.getElementById("infos").innerHTML = followers;
     }
 }
 
@@ -25,8 +27,10 @@ const setupGuilds = (data) => {
         const li = 
         `
           <hr>
-          <div><p style="color: grey">Username: <a href="https://ckstudios2018.github.io/OpenSource-uTube/c/${c.channel}">${c.username} </a></p></div>
-          <div><p style="color: gray">Followers: <b style="color: black">${c.followers}</b></p>  </div>
+          <div><p style="color: grey">Username: <p style="color: black">${c.username}</p></p></div>
+          <div><p style="color: gray">Followers: <b style="color: black">${c.followers}</b></p></div>
+          <div><p style="color: gray">URL: <p style="color:black">https://ckstudios2018.github.io/OpenSource-uTube/c/${c.channel}</p></p></div>
+          <div><p style="color:gray">Videos: <p style="color:black">${c.videos}</p></p></div>
         `;
         html += li;
       });
@@ -48,7 +52,7 @@ const setupGuilds = (data) => {
                     </td>
                     <td class="treeValueCell stringCell" role="presentation">
                         <span aria-labelledby="value">
-                            <span class="objectBox objectBox-string">"requestFailed"</span>
+                            <span class="objectBox objectBox-string">"reqwestFailed"</span>
                         </span>
                     </td>
                 </tr>
