@@ -1,8 +1,17 @@
 window.onload = function(){
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const [channel, followers, logo, banner, id] = [fragment.get('c'), fragment.get('followers'), fragment.get('logo'), fragment.get('banner'), fragment.get('legacy_id')];
-    if(channel != null){
-        document.getElementById("infos").innerHTML = channel;
+    if(channel != null){ //store is a global var = firestore
+        store.collection("c").where("channel", "==", channel)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    document.getElementById("infos").innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>${doc.data()}</p></div>`;
+        });
+    })
+    .catch((error) => {
+        window.alert("Error getting documents: ", error);
+    });
     }
 
     if(followers != null){
