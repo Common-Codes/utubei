@@ -6,7 +6,7 @@ window.onload = function(){
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    document.getElementById("infos").innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>${doc.data()}</p></div>`;
+                    document.getElementById("infos").innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>${doc.data().channel}<br>${doc.data().username}<br>${doc.data().followers}<br>${doc.data().logo}<br>${doc.data().banner}</p></div>`;
         });
     })
     .catch((error) => {
@@ -54,7 +54,7 @@ const setupGuilds = (data) => {
           <div><p style="color: gray">Videos: <p style="color: black">${c.videos}</p></p></div>
           <div><p style="color: gray">Logo: <p style="color: black">${c.img}</p></p></div>
           <div><p style="color: gray">Banner: ${c.banner}</p></div>
-          <div><p style="color: gray">Legacy ID: ${c.id}</p></div>
+          <div><p style="color: gray">Legacy ID: ${doc.id}</p></div>
         `;
         html += li;
       });
