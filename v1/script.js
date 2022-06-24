@@ -1,4 +1,5 @@
 window.onload = function(){
+    const quarry = document.getElementById("infos");
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const [channel, followers, logo, banner, id] = [fragment.get('c'), fragment.get('followers'), fragment.get('logo'), fragment.get('banner'), fragment.get('legacy_id')];
     if(channel != null){ //store is a global var = firestore
@@ -6,7 +7,7 @@ window.onload = function(){
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    document.getElementById("infos").innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().channel}<br>Channel: ${doc.data().username}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
+                    quarry.innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
         });
     })
     .catch((error) => {
@@ -15,19 +16,55 @@ window.onload = function(){
     }
 
     if(followers != null){
-        document.getElementById("infos").innerHTML = followers;
+        store.collection("c").where("followers", "==", followers)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    quarry.innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
+        });
+    })
+    .catch((error) => {
+        window.alert("Error getting documents: ", error);
+    });
     }
 
     if(logo != null){
-        document.getElementById("infos").innerHTML = logo;
+        store.collection("c").where("img", "==", logo)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    quarry.innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
+        });
+    })
+    .catch((error) => {
+        window.alert("Error getting documents: ", error);
+    });
     }
 
     if(banner != null){
-        document.getElementById("infos").innerHTML = banner;
+        store.collection("c").where("banner", "==", banner)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    quarry.innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
+        });
+    })
+    .catch((error) => {
+        window.alert("Error getting documents: ", error);
+    });
     }
 
     if(id != null){
-        document.getElementById("infos").innerHTML = id;
+        store.collection("c").where("legacy", "==", id)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    quarry.innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
+        });
+    })
+    .catch((error) => {
+        window.alert("Error getting documents: ", error);
+    });
     }
 }
 
