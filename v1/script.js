@@ -6,7 +6,7 @@ window.onload = function(){
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    document.getElementById("infos").innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>${doc.data().channel}<br>${doc.data().username}<br>${doc.data().followers}<br>${doc.data().logo}<br>${doc.data().banner}</p></div>`;
+                    document.getElementById("infos").innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().channel}<br>Channel: ${doc.data().username}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
         });
     })
     .catch((error) => {
