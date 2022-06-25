@@ -7,33 +7,7 @@ window.onload = function(){
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    quarry.innerHTML = `
-<div id="content">
-<div class="tabs ">
-<div class="panels">
-<div id="json-panel" style="visibility: visible; height: 100%;" class="tab-panel-box" role="tabpanel" aria-labelledby="json-tab">
-<div class="tab-panel json">
-<div class="jsonPanelBox tab-panel-inner">
-  <div class="panelContent">
-<table class="treeTable" role="tree" tabindex="0" aria-label="" cellspacing="0" cellpadding="0">
-<thead role="presentation">
-<tr class="" role="presentation">
-    <td class="" role="presentation" id="default">Legacy ID</td>
-    <td class="" style="width: 100%;" role="presentation" id="value">${doc.id}</td>
-</tr>
-</thead>
-</table>
-  </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div>
-        <p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p>
-</div>
-`;
+                    quarry.innerHTML = `<hr><div><p style="color: gray">Legacy ID: ${doc.id}</p></div><div><p>Username: ${doc.data().username}<br>Channel: ${doc.data().channel}<br>Followers: ${doc.data().followers}<br>Logo: ${doc.data().img}<br>Banner: ${doc.data().banner}</p></div>`;
         });
     })
     .catch((error) => {
@@ -103,7 +77,7 @@ store.collection('c').get().then(snapshot => {
 }
 
 const setupGuilds = (data) => {
-  const effer = document.getElementById("infos");
+  const effer = document.getElementById("data-container");
     if(data.length){
       let html = '';
       data.forEach(doc => {
@@ -139,7 +113,7 @@ const setupGuilds = (data) => {
                     </td>
                     <td class="treeValueCell stringCell" role="presentation">
                         <span aria-labelledby="value">
-                            <span class="objectBox objectBox-string">"reqwestFailed"</span>
+                            <span class="objectBox objectBox-string">"noData"</span>
                         </span>
                     </td>
                 </tr>
