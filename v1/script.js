@@ -1,5 +1,5 @@
 window.onload = function(){
-    const quarry = document.getElementById("infos");
+    const quarry = document.getElementById("data-container");
     const fragment = new URLSearchParams(window.location.hash.slice(1));
     const [channel, followers, logo, banner, id] = [fragment.get('c'), fragment.get('followers'), fragment.get('logo'), fragment.get('banner'), fragment.get('legacy_id')];
     if(channel != null){ //store is a global var = firestore
